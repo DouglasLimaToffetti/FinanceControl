@@ -7,10 +7,12 @@ public class Program
         bool sair = false;
         string descrReceita;
         double valorReceita;
+
         List<string> descricoesReceita = new List<string>();
         List<double> valoresReceita = new List<double>();
 
         while (!sair) { 
+            Console.Clear();
             Console.WriteLine("\n============================================");
             Console.WriteLine("FINANCE CONTROL");
             Console.WriteLine("============================================");
@@ -37,6 +39,7 @@ public class Program
                     Console.WriteLine("Receita Cadastrada!\n");
                     Console.WriteLine("Descrição: " + descrReceita);
                     Console.WriteLine("Valor: " + valorReceita);
+                    Console.Clear();
                     break;
 
                 case 2:
@@ -44,12 +47,22 @@ public class Program
                     break;
 
                 case 3:
+                    Console.Clear();
+                    Console.WriteLine("Receitas:");
                     foreach (double valor in valoresReceita)
                     {
                         Console.WriteLine(valor);
                     }
 
-                    Console.WriteLine("\nSaldo Total Atual: " + valoresReceita.Sum());
+                    Console.WriteLine("\nSaldo total de Receitas Atual: " + valoresReceita.Sum());
+
+                    Console.WriteLine("Voltar ao menu? (S/N)");
+                    string resposta = Console.ReadLine();
+                    while (resposta.ToUpper() != "S")
+                    {
+                        Console.WriteLine("Opção inválida! Digite S para voltar.");
+                        resposta = Console.ReadLine();
+                    }
                     break;
 
                 case 4:
