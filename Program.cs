@@ -45,7 +45,7 @@ public class Program
                 Console.WriteLine("Você escolheu sair");
                 break;
 
-            default: Console.WriteLine("Opção Inválida");
+            default: Console.WriteLine("Opção Inválida!");
                 break;
         }
     }
