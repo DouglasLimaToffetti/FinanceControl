@@ -5,14 +5,10 @@ public class Program
     public static void Main()
     {
         bool sair = false;
-        string descrReceita;
-        double valorReceita;
-
-        List<string> descricoesReceita = new List<string>();
-        List<double> valoresReceita = new List<double>();
+        //Lista de Receitas
+        List<Receita> ListaDeReceitas = new List<Receita>();
 
         while (!sair) { 
-            Console.Clear();
             Console.WriteLine("\n============================================");
             Console.WriteLine("FINANCE CONTROL");
             Console.WriteLine("============================================");
@@ -28,18 +24,21 @@ public class Program
             switch (opcao)
             {
                 case 1:
-                    Console.WriteLine("\nDescrição da Receita: ");
-                    descrReceita = Console.ReadLine();
-                    descricoesReceita.Add(descrReceita);
-
-                    Console.WriteLine("\nValor da Receita: ");
-                    valorReceita = Convert.ToDouble(Console.ReadLine());
-                    valoresReceita.Add(valorReceita);
-
-                    Console.WriteLine("Receita Cadastrada!\n");
-                    Console.WriteLine("Descrição: " + descrReceita);
-                    Console.WriteLine("Valor: " + valorReceita);
                     Console.Clear();
+
+                    // Objeto
+                    Receita receitaNova = new Receita();
+                    Console.WriteLine("\nDescrição da Receita: ");
+                    receitaNova.descrReceita = Console.ReadLine();
+                    
+                    Console.WriteLine("\nValor da Receita: ");
+                    receitaNova.valorReceita = Convert.ToDouble(Console.ReadLine());
+
+                    ListaDeReceitas.Add(receitaNova);
+
+                    Console.WriteLine("\nReceita Cadastrada!");
+                    Console.WriteLine("Descrição: " + receitaNova.descrReceita);
+                    Console.WriteLine("Valor: " + receitaNova.valorReceita);
                     break;
 
                 case 2:
@@ -47,16 +46,34 @@ public class Program
                     break;
 
                 case 3:
-                    Console.Clear();
-                    Console.WriteLine("Receitas:");
-                    foreach (double valor in valoresReceita)
+
+                    if (ListaDeReceitas.Count != 0)
                     {
-                        Console.WriteLine(valor);
+                        Console.Clear();
+                        Console.WriteLine("Receitas:");
+
+                        foreach (Receita receita in ListaDeReceitas)
+                        {
+                            Console.WriteLine("Descrição: " + receita.descrReceita);
+                            Console.WriteLine("Valor: " + receita.valorReceita + "\n");
+                        }
+
+                        double totalReceitas = 0;
+
+                        foreach (Receita receita in ListaDeReceitas)
+                        {
+                            totalReceitas = totalReceitas + receita.valorReceita;
+                        }
+
+                        Console.WriteLine("Saldo total de Receitas Atual: " + totalReceitas);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Você ainda não possui receitas para exibir!");
                     }
 
-                    Console.WriteLine("\nSaldo total de Receitas Atual: " + valoresReceita.Sum());
-
-                    Console.WriteLine("Voltar ao menu? (S/N)");
+                    Console.WriteLine("\nVoltar ao menu? (S/N)");
                     string resposta = Console.ReadLine();
                     while (resposta.ToUpper() != "S")
                     {
