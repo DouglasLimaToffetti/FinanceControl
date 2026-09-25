@@ -63,9 +63,11 @@ public class Program
                     break;
 
                 case 3:
-
-                    decimal totalReceitas = 0;
-                    decimal totalDespesas = 0;
+                    Receita totalReceita = new Receita();
+                    Despesa totalDespesa = new Despesa();
+                    decimal totalReceitaExibir = 0;
+                    decimal totalDespesaExibir = 0;
+                
                     decimal saldoAtual = 0;
 
                     Console.Clear();
@@ -82,12 +84,9 @@ public class Program
                             Console.WriteLine("Valor: " + receita.valorReceita + "\n");
                         }
 
-                        foreach (Receita receita in ListaDeReceitas)
-                        {
-                            totalReceitas = totalReceitas + receita.valorReceita;
-                        }
+                        totalReceitaExibir = totalReceita.CalculaTotalReceitas(ListaDeReceitas);
 
-                        Console.WriteLine("Saldo total de Receitas Atual: " + totalReceitas);
+                        Console.WriteLine("Saldo total de Receitas Atual: " + totalReceitaExibir);
                     }
                     else
                     {
@@ -104,12 +103,9 @@ public class Program
                             Console.WriteLine("Valor: " + despesa.valorDespesa + "\n");
                         }
 
-                        foreach (Despesa despesa in ListaDeDespesas)
-                        {
-                            totalDespesas = totalDespesas + despesa.valorDespesa;
-                        }
+                        totalDespesaExibir = totalDespesa.CalculaTotalDespesa(ListaDeDespesas);
 
-                        Console.WriteLine("Saldo total de Despesas Atual: " + totalDespesas);
+                        Console.WriteLine("Saldo total de Despesas Atual: " + totalDespesaExibir);
                     }
                     else
 
@@ -117,8 +113,7 @@ public class Program
                         Console.WriteLine("\nVocê ainda não possui despesas para exibir!");
                     }
 
-                    saldoAtual = totalReceitas - totalDespesas;
-
+                    saldoAtual = totalReceitaExibir - totalDespesaExibir;
 
                     Console.WriteLine("\n---------------------");
                     Console.WriteLine("Saldo Atual: " + saldoAtual);
