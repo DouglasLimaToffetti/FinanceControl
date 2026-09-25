@@ -8,6 +8,9 @@ public class Program
         //Lista de Receitas
         List<Receita> ListaDeReceitas = new List<Receita>();
 
+        //Lista de Despesas
+        List<Despesa> ListaDeDespesas = new List<Despesa>();
+
         while (!sair) { 
             Console.WriteLine("\n============================================");
             Console.WriteLine("FINANCE CONTROL");
@@ -26,13 +29,13 @@ public class Program
                 case 1:
                     Console.Clear();
 
-                    // Objeto
+                    // Objeto de Receita
                     Receita receitaNova = new Receita();
                     Console.WriteLine("\nDescrição da Receita: ");
                     receitaNova.descrReceita = Console.ReadLine();
                     
                     Console.WriteLine("\nValor da Receita: ");
-                    receitaNova.valorReceita = Convert.ToDouble(Console.ReadLine());
+                    receitaNova.valorReceita = Convert.ToDecimal(Console.ReadLine());
 
                     ListaDeReceitas.Add(receitaNova);
 
@@ -42,23 +45,42 @@ public class Program
                     break;
 
                 case 2:
-                    Console.WriteLine("\nVocê escolheu Adicionar Despesa");
+                    Console.Clear();
+
+                    //Objeto de Despesa
+                    Despesa despesaNova = new Despesa();
+                    Console.WriteLine("Descrição da Despesa: ");
+                    despesaNova.descrDespesa = Console.ReadLine();
+
+                    Console.WriteLine("\nValor da Despesa: ");
+                    despesaNova.valorDespesa = Convert.ToDecimal(Console.ReadLine());
+
+                    ListaDeDespesas.Add(despesaNova);
+
+                    Console.WriteLine("\nDespesa Cadastrada!");
+                    Console.WriteLine("Descrição: " + despesaNova.descrDespesa);
+                    Console.WriteLine("Valor: " + despesaNova.valorDespesa);
                     break;
 
                 case 3:
 
+                    decimal totalReceitas = 0;
+                    decimal totalDespesas = 0;
+                    decimal saldoAtual = 0;
+
+                    Console.Clear();
                     if (ListaDeReceitas.Count != 0)
                     {
-                        Console.Clear();
-                        Console.WriteLine("Receitas:");
+                        Console.WriteLine("================================");
+                        Console.WriteLine("RESUMO FINANCEIRO");
+                        Console.WriteLine("================================");
 
+                        Console.WriteLine("RECEITAS:");
                         foreach (Receita receita in ListaDeReceitas)
                         {
                             Console.WriteLine("Descrição: " + receita.descrReceita);
                             Console.WriteLine("Valor: " + receita.valorReceita + "\n");
                         }
-
-                        double totalReceitas = 0;
 
                         foreach (Receita receita in ListaDeReceitas)
                         {
@@ -69,11 +91,41 @@ public class Program
                     }
                     else
                     {
-                        Console.Clear();
                         Console.WriteLine("Você ainda não possui receitas para exibir!");
                     }
 
-                    Console.WriteLine("\nVoltar ao menu? (S/N)");
+                    if (ListaDeDespesas.Count != 0)
+                    {
+                        Console.WriteLine("\nDESPESAS:");
+
+                        foreach (Despesa despesa in ListaDeDespesas)
+                        {
+                            Console.WriteLine("Descrição: " + despesa.descrDespesa);
+                            Console.WriteLine("Valor: " + despesa.valorDespesa + "\n");
+                        }
+
+                        foreach (Despesa despesa in ListaDeDespesas)
+                        {
+                            totalDespesas = totalDespesas + despesa.valorDespesa;
+                        }
+
+                        Console.WriteLine("Saldo total de Despesas Atual: " + totalDespesas);
+                    }
+                    else
+
+                    {
+                        Console.WriteLine("\nVocê ainda não possui despesas para exibir!");
+                    }
+
+                    saldoAtual = totalReceitas - totalDespesas;
+
+
+                    Console.WriteLine("\n---------------------");
+                    Console.WriteLine("Saldo Atual: " + saldoAtual);
+                    Console.WriteLine("---------------------");
+
+
+            Console.WriteLine("\nVoltar ao menu? (S/N)");
                     string resposta = Console.ReadLine();
                     while (resposta.ToUpper() != "S")
                     {

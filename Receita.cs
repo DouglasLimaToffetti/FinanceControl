@@ -3,6 +3,6 @@
     public class Receita
     {
         public string descrReceita;
-        public double valorReceita;
+        public decimal valorReceita;
     }
 }
