@@ -21,8 +21,8 @@ aprendidos no curso.
 
 - [x] Menu principal
 - [x] Cadastro de receitas
-- [ ] Cadastro de despesas
-- [ ] Consulta de saldo
+- [x] Cadastro de despesas
+- [x] Consulta de saldo
 - [ ] Histórico de lançamentos
 - [ ] Persistência de dados
 - [ ] Testes

@@ -2,19 +2,31 @@
 {
     public class Despesa
     {
+        //Atributos da Receita
         public string descrDespesa;
         public decimal valorDespesa;
 
+        //Metodos
         public decimal CalculaTotalDespesa(List<Despesa> ListaDeDespesas)
         {
             decimal totalDespesasExibir = 0;
 
             foreach (Despesa despesa in ListaDeDespesas)
             {
-                totalDespesasExibir = totalDespesasExibir + despesa.valorDespesa;
+                totalDespesasExibir -= despesa.valorDespesa;
             }
             return totalDespesasExibir;
 
         }
+
+        public void ExibirDespesas(List<Despesa> ListaDeDespesas)
+        {
+            foreach (Despesa despesa in ListaDeDespesas)
+            {
+                Console.WriteLine("Descrição: " + despesa.descrDespesa);
+                Console.WriteLine("Valor: " + despesa.valorDespesa + "\n");
+            }
+        }
+
     }
 }
