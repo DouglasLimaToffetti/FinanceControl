@@ -97,10 +97,9 @@ public class Terminal
     {
         Receita totalReceita = new Receita();
         Despesa totalDespesa = new Despesa();
+
         decimal totalReceitaExibir = 0;
         decimal totalDespesaExibir = 0;
-
-        decimal saldoAtual = 0;
 
         Console.Clear();
         if (ListaDeReceitas.Count != 0)
@@ -115,7 +114,7 @@ public class Terminal
 
             totalReceitaExibir = totalReceita.CalculaTotalReceitas(ListaDeReceitas);
 
-            Console.WriteLine("Saldo total de Receitas Atual: " + totalReceitaExibir);
+            Console.WriteLine($"Saldo total de Receitas Atual: {totalReceitaExibir}");
         }
         else
         {
@@ -130,18 +129,17 @@ public class Terminal
 
             totalDespesaExibir = totalDespesa.CalculaTotalDespesa(ListaDeDespesas);
 
-            Console.WriteLine("Saldo total de Despesas Atual: " + totalDespesaExibir);
+            Console.WriteLine($"Saldo total de Despesas Atual: {totalDespesaExibir}");
         }
         else
-
         {
             Console.WriteLine("\nVocê ainda não possui despesas para exibir!");
         }
 
-        saldoAtual = totalReceitaExibir - totalDespesaExibir;
+        decimal saldoAtual = totalReceitaExibir - totalDespesaExibir;
 
         Console.WriteLine("\n---------------------");
-        Console.WriteLine("Saldo Atual: " + saldoAtual);
+        Console.WriteLine($"Saldo Atual: {saldoAtual}");
         Console.WriteLine("---------------------");
 
 

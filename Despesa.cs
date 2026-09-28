@@ -2,7 +2,7 @@
 {
     public class Despesa
     {
-        //Atributos da Receita
+        //Atributos da Despesa
         public string descrDespesa;
         public decimal valorDespesa;
 
@@ -13,7 +13,7 @@
 
             foreach (Despesa despesa in ListaDeDespesas)
             {
-                totalDespesasExibir -= despesa.valorDespesa;
+                totalDespesasExibir += despesa.valorDespesa;
             }
             return totalDespesasExibir;
 
