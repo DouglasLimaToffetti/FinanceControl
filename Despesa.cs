@@ -2,31 +2,13 @@
 {
     public class Despesa
     {
-        //Atributos da Despesa
-        public string descrDespesa;
-        public decimal valorDespesa;
+        public string Descricao;
+        public decimal Valor;
 
-        //Metodos
-        public decimal CalculaTotalDespesa(List<Despesa> ListaDeDespesas)
+        public Despesa(string descricao, decimal valor)
         {
-            decimal totalDespesasExibir = 0;
-
-            foreach (Despesa despesa in ListaDeDespesas)
-            {
-                totalDespesasExibir += despesa.valorDespesa;
-            }
-            return totalDespesasExibir;
-
+            Descricao = descricao;
+            Valor = valor;
         }
-
-        public void ExibirDespesas(List<Despesa> ListaDeDespesas)
-        {
-            foreach (Despesa despesa in ListaDeDespesas)
-            {
-                Console.WriteLine("Descrição: " + despesa.descrDespesa);
-                Console.WriteLine("Valor: " + despesa.valorDespesa + "\n");
-            }
-        }
-
     }
 }

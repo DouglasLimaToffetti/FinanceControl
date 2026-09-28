@@ -58,20 +58,18 @@ public class Terminal
     public void AdicionarReceitaMenu()
     {
         Console.Clear();
-
-        // Objeto de Receita
-        Receita receitaNova = new Receita();
         Console.WriteLine("\nDescrição da Receita: ");
-        receitaNova.descrReceita = Console.ReadLine();
+        string descricaoReceita = Console.ReadLine();
 
         Console.WriteLine("\nValor da Receita: ");
-        receitaNova.valorReceita = Convert.ToDecimal(Console.ReadLine());
+        decimal valorReceita = Convert.ToDecimal(Console.ReadLine());
 
+        Receita receitaNova = new Receita(descricaoReceita, valorReceita);
         ListaDeReceitas.Add(receitaNova);
 
         Console.WriteLine("\nReceita Cadastrada!");
-        Console.WriteLine($"Descrição: {receitaNova.descrReceita}");
-        Console.WriteLine($"Valor: {receitaNova.valorReceita}\n");
+        Console.WriteLine($"Descrição: {receitaNova.Descricao}");
+        Console.WriteLine($"Valor: {receitaNova.Valor}\n");
     }
 
     public void AdicionarDespesaMenu()
@@ -79,24 +77,23 @@ public class Terminal
         Console.Clear();
 
         //Objeto de Despesa
-        Despesa despesaNova = new Despesa();
+        
         Console.WriteLine("Descrição da Despesa: ");
-        despesaNova.descrDespesa = Console.ReadLine();
+        string descricaoDespesa = Console.ReadLine();
 
         Console.WriteLine("\nValor da Despesa: ");
-        despesaNova.valorDespesa = Convert.ToDecimal(Console.ReadLine());
+        decimal valorDespesa = Convert.ToDecimal(Console.ReadLine());
 
+        Despesa despesaNova = new Despesa(descricaoDespesa, valorDespesa);
         ListaDeDespesas.Add(despesaNova);
 
         Console.WriteLine("\nDespesa Cadastrada!");
-        Console.WriteLine($"Descrição: {despesaNova.descrDespesa}");
-        Console.WriteLine($"Valor: {despesaNova.valorDespesa}\n");
+        Console.WriteLine($"Descrição: {despesaNova.Descricao}");
+        Console.WriteLine($"Valor: {despesaNova.Valor}\n");
     }
 
     public void VisualizarSaldo()
     {
-        Receita totalReceita = new Receita();
-        Despesa totalDespesa = new Despesa();
 
         decimal totalReceitaExibir = 0;
         decimal totalDespesaExibir = 0;
@@ -110,9 +107,9 @@ public class Terminal
 
             Console.WriteLine("RECEITAS:");
 
-            totalReceita.ExibirReceitas(ListaDeReceitas);
+            ExibirReceitas(ListaDeReceitas);
 
-            totalReceitaExibir = totalReceita.CalculaTotalReceitas(ListaDeReceitas);
+            totalReceitaExibir = CalculaTotalReceitas(ListaDeReceitas);
 
             Console.WriteLine($"Saldo total de Receitas Atual: {totalReceitaExibir}");
         }
@@ -125,9 +122,9 @@ public class Terminal
         {
             Console.WriteLine("\nDESPESAS:");
 
-            totalDespesa.ExibirDespesas(ListaDeDespesas);
+            ExibirDespesas(ListaDeDespesas);
 
-            totalDespesaExibir = totalDespesa.CalculaTotalDespesa(ListaDeDespesas);
+            totalDespesaExibir = CalculaTotalDespesa(ListaDeDespesas);
 
             Console.WriteLine($"Saldo total de Despesas Atual: {totalDespesaExibir}");
         }
@@ -149,6 +146,47 @@ public class Terminal
         {
             Console.WriteLine("Opção inválida! Digite S para voltar.");
             resposta = Console.ReadLine();
+        }
+    }
+
+    public decimal CalculaTotalReceitas(List<Receita> ListaDeReceitas)
+    {
+        decimal totalReceitasExibir = 0;
+
+        foreach (Receita receita in ListaDeReceitas)
+        {
+            totalReceitasExibir += receita.Valor;
+        }
+        return totalReceitasExibir;
+
+    }
+
+    public void ExibirReceitas(List<Receita> ListaDeReceitas)
+    {
+        foreach (Receita receita in ListaDeReceitas)
+        {
+            Console.WriteLine("Descrição: " + receita.Descricao);
+            Console.WriteLine("Valor: " + receita.Valor + "\n");
+        }
+    }
+    public decimal CalculaTotalDespesa(List<Despesa> ListaDeDespesas)
+    {
+        decimal totalDespesasExibir = 0;
+
+        foreach (Despesa despesa in ListaDeDespesas)
+        {
+            totalDespesasExibir += despesa.Valor;
+        }
+        return totalDespesasExibir;
+
+    }
+
+    public void ExibirDespesas(List<Despesa> ListaDeDespesas)
+    {
+        foreach (Despesa despesa in ListaDeDespesas)
+        {
+            Console.WriteLine("Descrição: " + despesa.Descricao);
+            Console.WriteLine("Valor: " + despesa.Valor + "\n");
         }
     }
 }

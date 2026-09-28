@@ -2,30 +2,14 @@
 {
     public class Receita
     {
-        //Atributos da Receita
-        public string descrReceita;
-        public decimal valorReceita;
+        public string Descricao;
+        public decimal Valor;
 
-        //Metodos
-        public decimal CalculaTotalReceitas(List<Receita> ListaDeReceitas)
+        public Receita(string descricao, decimal valor)
         {
-            decimal totalReceitasExibir = 0;
-
-            foreach (Receita receita in ListaDeReceitas)
-            {
-                totalReceitasExibir += receita.valorReceita;
-            }
-            return totalReceitasExibir;
-
+            Descricao = descricao;
+            Valor = valor;
         }
 
-        public void ExibirReceitas(List<Receita> ListaDeReceitas)
-        {
-            foreach (Receita receita in ListaDeReceitas)
-            {
-                Console.WriteLine("Descrição: " + receita.descrReceita);
-                Console.WriteLine("Valor: " + receita.valorReceita + "\n");
-            }
-        }
     }
 }
